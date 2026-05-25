@@ -1,12 +1,14 @@
 # petanipintarku
 
-A new Flutter project.
+Petani Pintar
 
-## Getting Started
+Kelompok Mamboo
+1. 23311120_Galih Saputra
+2. 23311018_Rafi Naufal Arsi
+3. 23311136_Juanda Saputra
+4. 25371010P_Gusti Amalia
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
+Aplikasi monitoring & pencatatan pertanian 
 
 - [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
 - [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
