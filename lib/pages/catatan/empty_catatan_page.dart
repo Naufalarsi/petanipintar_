@@ -1,4 +1,3 @@
-```dart
 import 'package:flutter/material.dart';
 
 class EmptyCatatanPage extends StatelessWidget {
@@ -148,4 +147,3 @@ class EmptyCatatanPage extends StatelessWidget {
     );
   }
 }
-```
