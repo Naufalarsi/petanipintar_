@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../pages/auth/login_page.dart';
 import '../pages/auth/register_page.dart';
 import '../pages/auth/welcome_page.dart';
+import '../pages/dashboard/dashboard_page.dart';
 import '../pages/catatan/catatan_page.dart'; 
 
 class AppRoutes {
