@@ -25,7 +25,7 @@ class WelcomePage extends StatelessWidget {
 
           /// Overlay
           Container(
-            color: Colors.black.withOpacity(0.35),
+            color: Colors.black.withOpacity(0.2),
           ),
 
           /// Content
@@ -38,48 +38,49 @@ class WelcomePage extends StatelessWidget {
 
                   const SizedBox(height: 60),
 
-                  // Centered circular logo with ring
+                  // Circular logo with text overlay
                   Center(
-                    child: Container(
-                      width: 200,
-                      height: 200,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white,
-                        border: Border.all(
-                          color: AppColors.primary,
-                          width: 6,
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.25),
-                            blurRadius: 8,
-                            offset: const Offset(0, 4),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        // Circular background image
+                        Container(
+                          width: 220,
+                          height: 220,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white,
+                            border: Border.all(
+                              color: AppColors.primary,
+                              width: 6,
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.25),
+                                blurRadius: 8,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: ClipOval(
-                          child: Image.asset(
-                            AppConstants.logo,
-                            fit: BoxFit.contain,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ClipOval(
+                              child: Image.asset(
+                                AppConstants.logo,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
                         ),
-                      ),
-                    ),
-                  ),
-
-                  const SizedBox(height: 30),
-
-                  /// App Title
-                  const Text(
-                    "Petani\nPintar",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
+                        // Text overlay at bottom
+                        Positioned(
+                          bottom: 25,
+                          child: Column(
+                            children: [
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
 
@@ -88,7 +89,7 @@ class WelcomePage extends StatelessWidget {
                   /// Buttons
                   Center(
                     child: SizedBox(
-                      width: 280,
+                      width:300,
                       child: Row(
                         children: [
 
@@ -126,7 +127,7 @@ class WelcomePage extends StatelessWidget {
                     ),
                   ),
 
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 50),
                 ],
               ),
             ),

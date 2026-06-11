@@ -26,11 +26,11 @@ class DatabaseHelper {
   }
 
   // Mengaktifkan fitur Foreign Key di SQLite
-  Future _onConfigure(Database db) async {
+  Future<void> _onConfigure(Database db) async {
     await db.execute('PRAGMA foreign_keys = ON');
   }
 
-  Future _onCreate(Database db, int version) async {
+  Future<void> _onCreate(Database db, int version) async {
     // Tabel 3.1 User
     await db.execute('''
       CREATE TABLE user(
