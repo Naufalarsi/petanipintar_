@@ -11,26 +11,24 @@ class DatabaseHelper {
 
   Future<Database> get database async {
     if (_database != null) return _database!;
-    _database = await _initDatabase();
+    _database = await () async {
+      String path = join(await getDatabasesPath(), 'petani_pintar.db');
+      return await openDatabase(
+        path,
+        version: 1,
+        onCreate: _onCreate,
+        onConfigure: _onConfigure,
+      );
+    }();
     return _database!;
   }
 
-  Future<Database> _initDatabase() async {
-    String path = join(await getDatabasesPath(), 'petani_pintar.db');
-    return await openDatabase(
-      path,
-      version: 1,
-      onCreate: _onCreate,
-      onConfigure: _onConfigure,
-    );
-  }
-
   // Mengaktifkan fitur Foreign Key di SQLite
-  Future<void> _onConfigure(Database db) async {
+  Future _onConfigure(Database db) async {
     await db.execute('PRAGMA foreign_keys = ON');
   }
 
-  Future<void> _onCreate(Database db, int version) async {
+  Future _onCreate(Database db, int version) async {
     // Tabel 3.1 User
     await db.execute('''
       CREATE TABLE user(

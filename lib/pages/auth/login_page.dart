@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../core/routes.dart';
 import '../../core/colors.dart';
 import '../../core/constants.dart';
 import '../../widgets/custom_button.dart';
@@ -33,10 +34,9 @@ class _LoginPageState extends State<LoginPage> {
     bool isBerhasil = await DatabaseHelper().cekLogin(email, password);
 
     if (isBerhasil) {
-      // Kalau berhasil, pindah ke halaman Dashboard/Home
-      // Catatan: Pastikan '/home' ini sesuai dengan nama rute dashboard-mu di main.dart
       if (!mounted) return;
-      Navigator.pushReplacementNamed(context, '/home'); 
+      // Ubah '/home' menjadi AppRoutes.dashboard
+      Navigator.pushReplacementNamed(context, AppRoutes.dashboard); 
     } else {
       // Kalau gagal, munculkan peringatan
       if (!mounted) return;
