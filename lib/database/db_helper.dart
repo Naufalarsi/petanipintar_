@@ -113,5 +113,24 @@ class DatabaseHelper {
         FOREIGN KEY (id_jadwal) REFERENCES jadwal (id_jadwal) ON DELETE CASCADE
       )
     ''');
+
+    // ---> PENAMBAHAN DATA ADMIN DI SINI <---
+    // Menyuntikkan akun admin dengan email dan password barumu
+    await db.execute('''
+      INSERT INTO user (nama, email, password, no_hp, created_at)
+      VALUES ('Admin Petani', 'admin@gmail.com', 'admin123', '08000000000', datetime('now'))
+    ''');
+  }
+
+  Future<bool> cekLogin(String email, String password) async {
+    final db = await database;
+    var result = await db.query(
+      'user',
+      where: 'email = ? AND password = ?',
+      whereArgs: [email, password],
+    );
+    
+    // Jika result tidak kosong, berarti email dan password cocok
+    return result.isNotEmpty;
   }
 }

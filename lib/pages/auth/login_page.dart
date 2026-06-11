@@ -3,19 +3,57 @@ import '../../core/colors.dart';
 import '../../core/constants.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_textfield.dart';
+import '../../database/db_helper.dart'; // Panggil database helper-nya
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  // Alat untuk menangkap teks ketikan user
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  // Fungsi saat tombol masuk ditekan
+  void prosesLogin() async {
+    String email = emailController.text;
+    String password = passwordController.text;
+
+    if (email.isEmpty || password.isEmpty) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Email dan Password tidak boleh kosong!')),
+      );
+      return;
+    }
+
+    // Tanya ke database, apakah akunnya ada?
+    bool isBerhasil = await DatabaseHelper().cekLogin(email, password);
+
+    if (isBerhasil) {
+      // Kalau berhasil, pindah ke halaman Dashboard/Home
+      // Catatan: Pastikan '/home' ini sesuai dengan nama rute dashboard-mu di main.dart
+      if (!mounted) return;
+      Navigator.pushReplacementNamed(context, '/home'); 
+    } else {
+      // Kalau gagal, munculkan peringatan
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Email atau Password salah!')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-
           /// Background
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(AppConstants.background),
                 fit: BoxFit.cover,
@@ -41,14 +79,11 @@ class LoginPage extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-
                       Image.asset(
                         AppConstants.logo,
                         height: 120,
                       ),
-
                       const SizedBox(height: 20),
-
                       const Text(
                         "Selamat Datang Petaniku",
                         style: TextStyle(
@@ -57,36 +92,36 @@ class LoginPage extends StatelessWidget {
                           color: AppColors.primary,
                         ),
                       ),
-
                       const SizedBox(height: 30),
-
-                      const CustomTextField(
+                      
+                      // Tambahkan controller di sini
+                      CustomTextField(
+                        controller: emailController,
                         hint: "Email",
                         icon: Icons.email_outlined,
                       ),
-
+                      
                       const SizedBox(height: 20),
-
-                      const CustomTextField(
+                      
+                      // Tambahkan controller di sini
+                      CustomTextField(
+                        controller: passwordController,
                         hint: "Password",
                         icon: Icons.lock_outline,
                         obscure: true,
                       ),
-
+                      
                       const SizedBox(height: 30),
-
                       SizedBox(
                         width: double.infinity,
                         child: CustomButton(
                           text: "Masuk",
                           color: AppColors.primary,
                           textColor: Colors.white,
-                          onPressed: () {},
+                          onPressed: prosesLogin, // Panggil fungsi prosesLogin
                         ),
                       ),
-
                       const SizedBox(height: 20),
-
                       TextButton(
                         onPressed: () {},
                         child: const Text(
