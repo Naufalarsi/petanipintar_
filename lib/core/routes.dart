@@ -9,7 +9,8 @@ class AppRoutes {
   static const String welcome = "/";
   static const String login = "/login";
   static const String register = "/register";
-  static const String catatan = "/catatan"; 
+  static const String catatan = "/catatan";
+  static const String dashboard = "/dashboard";
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -24,6 +25,9 @@ class AppRoutes {
 
       case catatan:
         return MaterialPageRoute(builder: (_) => const CatatanPage());
+
+      case dashboard:
+        return MaterialPageRoute(builder: (_) => const DashboardPage());
 
       default:
         return MaterialPageRoute(builder: (_) => const WelcomePage());
