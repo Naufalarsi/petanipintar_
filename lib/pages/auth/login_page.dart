@@ -3,7 +3,7 @@ import '../../core/colors.dart';
 import '../../core/constants.dart';
 import '../../widgets/custom_button.dart';
 import '../../widgets/custom_textfield.dart';
-import '../../database/db_helper.dart'; // Panggil database helper-nya
+import '../../database/db_helper.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
