@@ -8,6 +8,8 @@ Kelompok Mamboo
 3. 23311136_Juanda Saputra
 4. 25371010P_Gusti Amalia
 
+Link Aplikasi Petani Pintar yang baru (https://github.com/Naufalarsi/petanipintar_new.git)
+
 Aplikasi monitoring & pencatatan pertanian 
 
 - [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
